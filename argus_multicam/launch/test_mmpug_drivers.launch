@@ -1,0 +1,4 @@
+<launch>
+    <include file="$(find argus_multicam)/launch/argus_camera.launch"/>
+    <include file="$(find epson_imu_driver)/launch/epson_g370.launch"/>
+</launch>

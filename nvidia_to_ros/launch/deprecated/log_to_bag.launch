@@ -1,0 +1,13 @@
+<launch>
+
+  <arg name="log_filename" default="" />
+  <arg name="bag_filename" default="" />
+  <arg name="output_topic" default="image" />
+  
+  <node name="nv_log_to_bag" pkg="nvidia_to_ros" type="nv_log_to_bag" output="screen" required="true">
+    <param name="log_filename" value="$(arg log_filename)" />
+    <param name="bag_filename" value="$(arg bag_filename)" />
+    <param name="output_topic" value="$(arg output_topic)" />
+  </node>
+  
+</launch>

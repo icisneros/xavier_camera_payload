@@ -1,0 +1,17 @@
+--- hardware/nvidia/soc/t19x/kernel-dts/tegra194-soc/tegra194-aon.dtsi	2020-08-23 12:57:24.828833400 -0400
++++ hardware/nvidia/soc/t19x/kernel-dts/tegra194-soc/tegra194-aon.dtsi	2020-08-23 14:50:29.161178100 -0400
+@@ -91,4 +91,14 @@
+ 		#clock-cells = <1>;
+ 		status = "okay";
+ 	};
++	aon_echo {
++        compatible = "nvidia,tegra186-aon-ivc-echo";
++        mboxes = <&aon 0>;
++        status = "okay";
++	};
++	pps {
++        gpios = <&tegra_aon_gpio TEGRA194_AON_GPIO(AA, 0) GPIO_ACTIVE_LOW>;
++        compatible = "pps-gpio";
++        status = "okay";
++	};
+ };

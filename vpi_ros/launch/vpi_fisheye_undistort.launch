@@ -1,0 +1,125 @@
+<launch>
+  <!-- 
+      Input: A directory full of images to undistort
+Fisheye coefficients: -0.527419 1.778991 -3.032050 1.633583
+Camera matrix:
+[863.610685 0.000000 1222.780868; 0.000000 856.730236 1027.391327; 0.000000 0.000000 1.000000]
+
+rms error: 77.647296
+Fisheye coefficients: -0.194257 2.419426 -11.064731 4.142382
+Camera matrix:
+[315.654627 0.000000 613.600710; 0.000000 312.338200 525.231128; 0.000000 0.000000 1.000000]
+K 0,0 315.654633 
+K 0,1 0.000000 
+K 0,2 613.600708 
+K 1,0 0.000000 
+K 1,1 312.338196 
+K 1,2 525.231140 
+
+
+    <rosparam param="fisheye_coeff">
+        - -0.073234 
+        - 0.121251
+        - -0.120230
+        - 0.038480
+    </rosparam>
+   <rosparam param="camera_matrix">
+        - 440.956750
+        - 0.000000
+        - 659.822931
+        - 0.000000
+        - 439.322113
+        - 451.685233
+        - 0.000000
+        - 0.000000
+        - 1.000000
+    </rosparam>
+
+NVIDIA CALIB
+    Fisheye coefficients: -0.073234 0.121251 -0.120230 0.038480
+Camera matrix:
+[440.956750 0.000000 659.822931; 0.000000 439.322113 451.685233; 0.000000 0.000000 1.000000]
+K 0,0 440.956757 
+K 0,1 0.000000 
+K 0,2 659.822937 
+K 1,0 0.000000 
+K 1,1 439.322113 
+K 1,2 451.685242
+
+
+    <rosparam param="fisheye_coeff">
+        - -0.527419 
+        - 1.778991 
+        - -3.032050 
+        - 1.633583
+    </rosparam>
+
+   <rosparam param="camera_matrix">
+        - 863.610685
+        - 0.000000
+        - 1222.780868
+        - 0.000000
+        - 856.730236
+        - 1027.391327
+        - 0.000000
+        - 0.000000
+        - 1.000000
+    </rosparam>
+
+
+   -->
+  
+  
+  <arg name="image_directory" default=""/>
+  <arg name="image_type" default="jpg"/>
+  <arg name="checkerboard_width_num_squares" default="10"/>
+  <arg name="checkerboard_height_num_squares" default="7"/>
+  <arg name="image_path_directory" default="$(find vpi_ros)/fisheye-data/fisheye/"/>   
+ 
+  <arg name="fisheye_input_topic" default="vpi_fisheye_undistort_image_in"/>
+  <arg name="fisheye_output_topic" default="vpi_fisheye_undistort_image_out"/>
+ 
+  <arg name="harris_keypoint_image_input_topic" default="harris_keypoint_image_in"/>
+  <arg name="harris_keypoint_image_output_topic" default="harris_keypoint_image_out"/>
+  <arg name="harris_keypoint_points_output_topic" default="harris_keypoint_points_out"/>
+
+
+  <!--node ns="vpi_ros" name="vpi_ros_harris_node" pkg="vpi_ros" type="vpi_ros_harris_node" output="screen">
+    <param name="backend_type" value="cuda"/>
+    <param name="in_topic" value="$(arg harris_keypoint_image_input_topic)"/>
+    <param name="out_topic" value="$(arg harris_keypoint_image_output_topic)"/>
+    <param name="points_out_topic" value="$(arg harris_keypoint_points_output_topic)"/>
+
+  </node-->
+
+
+  <node ns="vpi_ros" name="vpi_ros_fisheye_node" pkg="vpi_ros" type="vpi_ros_fisheye_node" output="screen">
+    <param name="checkerboard_width_num_squares" value="$(arg checkerboard_width_num_squares)"/>
+    <param name="checkerboard_height_num_squares" value="$(arg checkerboard_height_num_squares)"/>
+    <param name="image_path_dir" value="$(arg image_path_directory)"/>
+    <param name="backend_type" value="cuda"/>
+
+    <param name="in_topic" value="$(arg fisheye_input_topic)"/>
+    <param name="out_topic" value="$(arg fisheye_output_topic)"/>
+
+    <rosparam param="fisheye_coeff">
+        - 0.039428
+        - -0.174998
+        - 0.159336 
+        - -0.048084 
+    </rosparam>
+
+   <rosparam param="camera_matrix">
+        - 440.956750
+        - 0.000000
+        - 659.822931
+        - 0.000000
+        - 439.322113
+        - 451.685233
+        - 0.000000
+        - 0.000000
+        - 1.000000
+    </rosparam>
+  </node>
+
+</launch>

@@ -1,0 +1,24 @@
+<launch>
+
+  <!-- A simple launch file for the nmea_topic_serial_reader node. -->
+  <!-- 1.2K/4.8K/9.6K/19.2K/38.4K/57.6K/112.5K -->
+  <!-- https://www.radiolink.com/newsinfo/659083.html says that baud rate should be 9.6K -->
+  <!-- Port should be /dev/ttyTHS1 -->
+
+  <arg name="port" default="/dev/ttyTHS1" />
+  <arg name="baud" default="9600" />
+  <!-- <arg name="frame_id" default="gps" />
+  <arg name="use_GNSS_time" default="False" />
+  <arg name="time_ref_source" default="gps" />
+  <arg name="useRMC" default="True" /> -->
+
+  <node name="nmea_serial_reader_node" pkg="nmea_navsat_driver" type="nmea_topic_serial_reader" output="screen">
+    <param name="port" value="$(arg port)"/>
+    <param name="baud" value="$(arg baud)" />
+    <!-- <param name="frame_id" value="$(arg frame_id)" />
+    <param name="use_GNSS_time" value="$(arg use_GNSS_time)" />
+    <param name="time_ref_source" value="$(arg time_ref_source)" />
+    <param name="useRMC" value="$(arg useRMC)" /> -->
+  </node>
+
+</launch>

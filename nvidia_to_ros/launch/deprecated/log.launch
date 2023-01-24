@@ -1,0 +1,8 @@
+<launch>
+  <node name="nv_producer" pkg="nvidia_to_ros" type="nv_producer" output="screen" required="true" />
+  <node name="nv_log" pkg="nvidia_to_ros" type="nv_log" output="screen" required="true">
+    <param name="input_topic" value="nv_image1" />
+    <param name="filename" value="/home/airlab/bags/log_test.bin" />
+  </node>
+  
+</launch>

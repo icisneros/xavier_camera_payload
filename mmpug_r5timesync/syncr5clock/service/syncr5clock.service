@@ -1,0 +1,13 @@
+[Unit]
+Description=Sync r5 Clock
+After=chronyd.service
+StartLimitIntervalSec=0
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+ExecStart=/usr/bin/syncr5clock
+
+[Install]
+WantedBy=multi-user.target
+

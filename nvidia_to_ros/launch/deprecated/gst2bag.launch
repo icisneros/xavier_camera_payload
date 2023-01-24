@@ -1,0 +1,13 @@
+<launch>
+
+  <arg name="input_filename" default="/home/airlab/data/rosbags/camera0_calib_2_1028_1667934733_250544363.mp4" />
+  <arg name="output_bag_filename" default="/home/airlab/data/rosbags/camera0_calib_2_1028.bag" />
+  <arg name="output_topic" default="/camera0" />
+  
+  <node name="gst2bag" pkg="nvidia_to_ros" type="gst2bag" output="screen" disable_launch-prefix="valgrind --track-origins=yes">
+    <param name="input_filename" type="string" value="$(arg input_filename)" />
+    <param name="output_bag_filename" type="string" value="$(arg output_bag_filename)" />
+    <param name="output_topic" type="string" value="$(arg output_topic)" />
+  </node>
+  
+</launch>

@@ -1,0 +1,25 @@
+- git:
+    local-name: argus_multicam
+    uri: git@bitbucket.org:castacks/argus_multicam.git
+    version: argus_tsc_change
+- git:
+    local-name: epson_imu_driver
+    uri: git@bitbucket.org:castacks/mmpug_imu_epson_g365_driver.git
+    version: xaviernx-g370
+- git:
+    local-name: gpio-button-xaviernx
+    uri: git@bitbucket.org:castacks/gpio-button-xaviernx.git
+- git:
+    local-name: mmpug_r5timesync
+    uri: git@bitbucket.org:castacks/mmpug_r5timesync.git
+    version: feature/r32.5-2021-02-21-xaviernx-customcarrier
+- git:
+    local-name: ordv2
+    uri: git@bitbucket.org:castacks/ordv2.git
+- git:
+    local-name: vins-mono
+    uri: git@bitbucket.org:castacks/vins-mono.git
+- git:
+    local-name: vpi_ros
+    uri: git@bitbucket.org:castacks/vpi_ros.git
+    version: vpi-refactor

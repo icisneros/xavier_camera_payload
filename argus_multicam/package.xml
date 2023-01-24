@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>argus_multicam</name>
+  <version>1.0.1</version>
+  
+  <description>ARGUS to ROS with Six Cameras</description>
+  <maintainer email="bdrozd@rec.ri.cmu.edu">Bill Drozd</maintainer>
+  <license>Proprietary</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>cv_bridge</build_depend>
+  <build_depend>nvidia_to_ros</build_depend>
+  
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>sensor_msgs</build_export_depend>
+  <build_export_depend>cv_bridge</build_export_depend>
+  <build_export_depend>nvidia_to_ros</build_export_depend>
+
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <build_depend>message_generation</build_depend>
+  <exec_depend>message_runtime</exec_depend>
+  <exec_depend>nvidia_to_ros</exec_depend>
+  
+</package>

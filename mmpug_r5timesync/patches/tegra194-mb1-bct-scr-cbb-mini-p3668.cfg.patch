@@ -1,0 +1,16 @@
+--- Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-scr-cbb-mini.cfg.orig	2021-02-19 11:47:10.000000000 -0500
++++ Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-scr-cbb-mini.cfg	2021-11-11 20:00:40.384530635 -0500
+@@ -70,11 +70,11 @@
+ scr.46.6 = 0x1800ffff; # GPIO_CC_SCR_01_0
+ scr.47.6 = 0x1800ffff; # GPIO_CC_SCR_02_0
+ scr.48.6 = 0x1800ffff; # GPIO_CC_SCR_03_0
+-scr.49.6 = 0x1800ffff; # GPIO_CC_SCR_04_0
++scr.49.6 = 0x18001010; # GPIO_CC_SCR_04_0
+ scr.50.6 = 0x1800ffff; # GPIO_CC_SCR_05_0
+ scr.51.6 = 0x1800ffff; # GPIO_CC_SCR_06_0
+ scr.52.6 = 0x1800ffff; # GPIO_CC_SCR_07_0
+-scr.53.6 = 0x1800ffff; # GPIO_DD_SCR_00_0
++scr.53.6 = 0x18001010; # GPIO_DD_SCR_00_0
+ scr.54.6 = 0x1800ffff; # GPIO_DD_SCR_01_0
+ scr.55.6 = 0x1800ffff; # GPIO_DD_SCR_02_0
+ scr.56.6 = 0x1800ffff; # GPIO_EE_SCR_00_0

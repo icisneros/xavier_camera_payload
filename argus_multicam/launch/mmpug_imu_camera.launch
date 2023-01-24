@@ -1,0 +1,11 @@
+<launch>
+  <group ns="cmu_rc1">
+  <node name="argus_camera" pkg="argus_multicam" type="argus_multicam" output="screen" disable_launch-prefix="gdb -ex run --args">
+	<param name="width" type="int" value="1280" />
+	<param name="height" type="int" value="960" />	
+	<rosparam param="active_cameras">[0,1]</rosparam>
+  </node>
+  <include file="$(find velodyne_launch)/launch/velodyne.launch"/>
+  <include file="$(find epson_imu_driver)/launch/epson_g365_usasoc_josh.launch"/>
+ </group>
+</launch>

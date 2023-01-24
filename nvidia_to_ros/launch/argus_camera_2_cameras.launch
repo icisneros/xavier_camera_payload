@@ -1,0 +1,90 @@
+<launch>
+
+  <arg name="system_id"     default="$(optenv MMPUG_SYSTEM_ID rc1)" />
+  
+  <arg name="width" value="640" />
+  <arg name="height" value="480" />
+  <arg name="base_ip" value="$(optenv MMPUG_MULTICAST_ADDR 0.0.0.0)"/>
+  <arg name="base_port" value="6000"/>
+  <arg name="namespace"  default="/$(arg system_id)" />
+  
+  <node name="argus_camera" pkg="argus_multicam" type="argus_multicam_fast" output="screen" disable_launch-prefix="gdb -ex run --args" launch-prefix="nice -n -15" >
+    <rosparam param="active_cameras">[0, 1]</rosparam>
+    <rosparam param="cams_to_ros">[0, 1]</rosparam>
+    <rosparam param="cams_to_udp">[]</rosparam>
+    <param name="width" value="$(arg width)"/>
+    <param name="height" value="$(arg height)"/>
+    <param name="base_port" value="6000"/>
+    
+    
+    <param name="udp_pipeline" type="str" value="appsrc ! video/x-raw,format=BGR,width=$(arg width),height=$(arg height),framerate=24/1 ! videoconvert ! video/x-raw,format=I420 ! x264enc tune=zerolatency bitrate=500 speed-preset=superfast intra-refresh=true key-int-max=3 ! rtph264pay ! udpsink host=$(arg base_ip) auto-multicast=true port=PORT"/>
+
+    <param name="print_time_debug" type="bool" value="false" />
+    
+    <param name="sensor_mode" type="int" value="0" />
+
+    <!-- A value < 0 for any settings will make it use the default -->
+    
+    <!-- Sets the frame duration range, in nanoseconds. -->
+    <param name="frame_duration" type="int" value="-1" />
+
+    <!-- Set the auto exposure region of interest -->
+    <param name="ae_top" type="int" value="-1" />
+    <param name="ae_bottom" type="int" value="-1" />
+    <param name="ae_left" type="int" value="-1" />
+    <param name="ae_right" type="int" value="-1" />
+
+    <!-- Sets the exposure compensation. Exposure compensation is applied after AE is solved. -->
+    <param name="exposure_compensation" type="double" value="-1.0" />
+
+    <!-- Sets the exposure time range of the source, in nanoseconds. -->
+    <!-- <param name="exposure_time_min" type="int" value="3924618" />
+    <param name="exposure_time_max" type="int" value="3924618" /> -->
+    <!-- Ivan: reduced exposure time from the values above. Newer values perform better outdoors in sunlight. -->
+    <param name="exposure_time_min" type="int" value="100000" />
+    <param name="exposure_time_max" type="int" value="100000" />
+
+    <!-- Sets the user-specified Isp Digital gain range. -->
+    <param name="isp_digital_gain_min" type="double" value="-1.0" />
+    <param name="isp_digital_gain_max" type="double" value="-1.0" />
+    
+    <!-- Sets the gain range for the sensor. -->
+    <param name="gain_min" type="double" value="-1.0" />
+    <param name="gain_max" type="double" value="-1.0" />
+
+    <!-- The denoise mode:
+	 0 - OFF: Denoise algorithms are disabled.
+	 1 - FAST: Noise reduction will be enabled, but it will not slow down the capture rate.
+	 2 - HIGH_QUALITY: Maximum noise reduction will be enabled to achieve the highest quality,
+	 but may slow down the capture rate. -->
+    <param name="denoise_mode" type="int" value="-1" />
+
+    <!-- The denoise strength. This must be within the range [0.0, 1.0], where 0.0 is the least and 1.0
+	 is the most amount of noise reduction that can be applied. This denoise strength is relative to
+	 the current noise reduction mode; using a FAST denoise mode with a full strength of 1.0 may not
+	 perform as well as using a HIGH_QUALITY mode with a lower relative strength. -->
+    <param name="denoise_strength" type="double" value="-1.0" />
+
+    <!-- The edge enhancement mode:
+	 0 - OFF: Edge enhancement algorithms are disabled.
+	 1 - FAST: Edge enhancement will be enabled, but it will not slow down the capture rate.
+	 2 - HIGH_QUALITY: Maximum edge enhancement will be enabled to achieve the highest quality,
+	 but may slow down the capture rate. -->
+    <param name="edge_enhance_mode" type="int" value="-1" />
+    
+    <!-- The edge enhancement strength.
+	 This must be within the range [0.0, 1.0], where 0.0 is the least and 1.0 is the most amount of
+	 edge enhancement that can be applied. This strength is relative to the current edge enhancement mode;
+	 using a FAST edge enhancement mode with a full strength of 1.0 may not perform as well as using
+	 a HIGH_QUALITY mode with a lower relative strength. -->
+    <param name="edge_enhance_strength" type="double" value="-1.0" />
+
+  </node>
+  
+  <node name="nv_consumer" pkg="nvidia_to_ros" type="nv_consumer" output="screen">
+    <param name="visualize" value="true" />
+    <rosparam param="input_topics">[/nv_image0, /nv_image1]</rosparam>
+    <rosparam param="output_topics">[/camera0, /camera1]</rosparam> 
+  </node>
+    
+</launch>

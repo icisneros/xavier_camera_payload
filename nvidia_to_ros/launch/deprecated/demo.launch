@@ -1,0 +1,11 @@
+<launch>
+  <node name="nv_producer" pkg="nvidia_to_ros" type="nv_producer" output="screen" required="true" />
+  <node name="nv_consumer" pkg="nvidia_to_ros" type="nv_consumer" output="screen" required="true">
+    <param name="visualize" value="true" />
+    <rosparam param="input_topics">[/nv_image1, /nv_image2]</rosparam>
+    <rosparam param="output_topics">[/camera_image1, /camera_image2]</rosparam> 
+  </node>
+
+  <node name="rqt_camera1" pkg="rqt_image_view" type="rqt_image_view" args="/camera_image1" />
+  <node name="rqt_camera2" pkg="rqt_image_view" type="rqt_image_view" args="/camera_image2" />
+</launch>

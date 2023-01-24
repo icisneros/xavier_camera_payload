@@ -1,0 +1,15 @@
+<launch>
+  <include file="$(find epson_imu_driver)/launch/epson_g370_rotated.launch" />
+
+  <include file="$(find gpio-button-xaviernx)/launch/gpio-button.launch" />
+
+  <include file="$(find mavros)/launch/px4.launch" > 
+    <!-- <arg name="fcu_url" value="/dev/ttyTHS1:921600" /> -->
+    <arg name="fcu_url" value="/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AB0JS5GM-if00-port0:921600" />
+
+    <!--adjust the gcs_url to the IP of the computer where you want to launch qgroundcontrol-->
+    <!-- <arg name="gcs_url" value="udp://:14551@192.168.50.56:14550" /> -->
+  </include>
+  <!-- <include file="$(find argus_multicam)/launch/argus_camera.launch" /> -->
+  <include file="$(find argus_multicam)/launch/select_camera.launch" />
+</launch>

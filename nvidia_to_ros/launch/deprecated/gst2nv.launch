@@ -1,0 +1,15 @@
+<launch>
+
+  <arg name="filename" default="" />
+  
+  <node name="gst2nv" pkg="nvidia_to_ros" type="gst2nv" output="screen" disable_launch-prefix="valgrind --track-origins=yes">
+    <param name="filename" type="string" value="$(arg filename)" />
+  </node>
+
+  <node name="nv_consumer" pkg="nvidia_to_ros" type="nv_consumer" output="screen" required="true">
+    <param name="visualize" value="true" />
+    <rosparam param="input_topics">[nv_image1]</rosparam>
+    <rosparam param="output_topics">[/camera_image1]</rosparam> 
+  </node>
+  
+</launch>

@@ -1,0 +1,18 @@
+<launch>
+
+  <arg name="input_topic" default="input_image" />
+  <arg name="output_topic" default="output_image" />
+  
+  <node name="ros2nv" pkg="nvidia_to_ros" type="ros2nv">
+    <remap from="image" to="$(arg input_topic)" />
+    <param name="output_topic" value="$(arg output_topic)" />
+  </node>
+
+  <!--
+  <node name="nv_consumer2" pkg="nvidia_to_ros" type="nv_consumer" output="screen" required="true">
+    <param name="visualize" value="true" />
+    <rosparam param="input_topics">[/nv_image3]</rosparam>
+    <rosparam param="output_topics">[/camera_image3]</rosparam> 
+  </node>
+  -->
+</launch>

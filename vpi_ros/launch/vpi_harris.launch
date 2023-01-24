@@ -1,0 +1,18 @@
+<launch>
+  <arg name="fisheye_input_topic" default="vpi_fisheye_undistort_image_in"/>
+  <arg name="fisheye_output_topic" default="vpi_fisheye_undistort_image_out"/>
+ 
+  <arg name="harris_keypoint_image_input_topic" default="harris_keypoint_image_in"/>
+  <arg name="harris_keypoint_image_output_topic" default="harris_keypoint_image_out"/>
+  <arg name="harris_keypoint_points_output_topic" default="harris_keypoint_points_out"/>
+
+  <node ns="vpi_ros" name="vpi_ros_harris_node" pkg="vpi_ros" type="vpi_ros_harris_node" output="screen">
+    <param name="backend_type" value="cuda"/>
+    <param name="in_topic" value="$(arg harris_keypoint_image_input_topic)"/>
+    <param name="out_topic" value="$(arg harris_keypoint_image_output_topic)"/>
+    <param name="points_out_topic" value="$(arg harris_keypoint_points_output_topic)"/>
+
+  </node>
+
+
+</launch>

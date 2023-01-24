@@ -1,0 +1,16 @@
+--- Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-gpioint-p3668-0001-a00.cfg.orig	2021-11-11 21:56:12.522997333 -0500
++++ Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-gpioint-p3668-0001-a00.cfg	2021-11-11 21:59:11.553006976 -0500
+@@ -24,11 +24,11 @@
+ gpio-intmap.port.CC.pin.1 = 4; # GPIO CC1 to INT4
+ gpio-intmap.port.CC.pin.2 = 4; # GPIO CC2 to INT4
+ gpio-intmap.port.CC.pin.3 = 4; # GPIO CC3 to INT4
+-gpio-intmap.port.CC.pin.4 = 4; # GPIO CC4 to INT4
++gpio-intmap.port.CC.pin.4 = 2; # GPIO CC4 to INT4
+ gpio-intmap.port.CC.pin.5 = 4; # GPIO CC5 to INT4
+ gpio-intmap.port.CC.pin.6 = 4; # GPIO CC6 to INT4
+ gpio-intmap.port.CC.pin.7 = 4; # GPIO CC7 to INT4
+-gpio-intmap.port.DD.pin.0 = 4; # GPIO DD0 to INT4
++gpio-intmap.port.DD.pin.0 = 2; # GPIO DD0 to INT4
+ gpio-intmap.port.DD.pin.1 = 4; # GPIO DD1 to INT4
+ gpio-intmap.port.DD.pin.2 = 4; # GPIO DD2 to INT4
+ gpio-intmap.port.EE.pin.0 = 4; # GPIO EE0 to INT4

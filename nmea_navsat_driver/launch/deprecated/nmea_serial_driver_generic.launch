@@ -1,0 +1,24 @@
+<launch>
+
+  <!-- A simple launch file for the nmea_serial_driver node. -->
+  <!-- 1.2K/4.8K/9.6K/19.2K/38.4K/57.6K/112.5K -->
+  <!-- tried: 1200; 4800; 9600; 19200; 38400; 57600-->
+  <!-- Port should be /dev/ttyTHS1 -->
+
+  <arg name="port" default="/dev/ttyTHS4" />
+  <arg name="baud" default="9600" />
+  <arg name="frame_id" default="gps" />
+  <arg name="use_GNSS_time" default="False" />
+  <arg name="time_ref_source" default="gps" />
+  <arg name="useRMC" default="False" />
+
+  <node name="nmea_serial_driver_node" pkg="nmea_navsat_driver" type="nmea_serial_driver" output="screen">
+    <param name="port" value="$(arg port)"/>
+    <param name="baud" value="$(arg baud)" />
+    <param name="frame_id" value="$(arg frame_id)" />
+    <param name="use_GNSS_time" value="$(arg use_GNSS_time)" />
+    <param name="time_ref_source" value="$(arg time_ref_source)" />
+    <param name="useRMC" value="$(arg useRMC)" />
+  </node>
+
+</launch>

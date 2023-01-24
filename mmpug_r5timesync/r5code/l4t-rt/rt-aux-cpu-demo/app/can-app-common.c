@@ -1,0 +1,71 @@
+/*
+ * Copyright (c) 2020, NVIDIA CORPORATION.  All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *  * Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *  * Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *  * Neither the name of NVIDIA CORPORATION nor the names of its
+ *    contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS ``AS IS'' AND ANY
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
+ * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+#include <stdbool.h>
+#include <stdio.h>
+#include <FreeRTOS.h>
+#include <tegra-can.h>
+#include <tegra-mttcan.h>
+#include <can-tegra-hw.h>
+
+#include "can-app-common.h"
+
+void can_deinit(struct ttcan_controller *ttcan)
+{
+	int result;
+
+	if (!ttcan)
+		return;
+
+	/* Put CAN controller in reset and disable interrupts */
+	result = mttcan_controller_enable(ttcan, false);
+	if (result)
+		printf("Unable to deinit CAN%lu controller\r\n", ttcan->id);
+
+	/* Free internal queue and semaphore */
+	mttcan_controller_deinit(ttcan);
+}
+
+BaseType_t can_init(struct ttcan_controller *ttcan)
+{
+	BaseType_t ret;
+	int result;
+
+	if (!ttcan)
+		return pdFAIL;
+
+	ret = mttcan_controller_init(ttcan);
+	if (ret != pdPASS)
+		return ret;
+
+	result = mttcan_controller_enable(ttcan, true);
+	if (!result)
+		return pdPASS;
+	else
+		return pdFAIL;
+}
