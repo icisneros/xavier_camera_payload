@@ -1,7 +1,7 @@
 <launch>
   <!-- Modify at runtime >>>>>>>>>>>  -->
-  <arg name="out_dir" default="/home/airlab/data/SQH-tests/calibration" />
-  <arg name="flight_name" default="test" />
+  <arg name="out_dir" default="/home/airlab/data/SQH-tests/calibration/calibration_2023_03_21" />
+  <arg name="flight_name" default="calib0" />
   <!-- <<<<<<<<<<< -->
 
   <arg name="out_vid_prefix" default="nv2gst_camera" />
