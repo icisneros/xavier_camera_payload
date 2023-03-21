@@ -1,0 +1,23 @@
+<launch>
+  <!-- Modify at runtime >>>>>>>>>>>  -->
+  <arg name="out_dir" default="/home/airlab/data/SQH-tests/calibration" />
+  <arg name="flight_name" default="test" />
+  <!-- <<<<<<<<<<< -->
+
+  <arg name="out_vid_prefix" default="nv2gst_camera" />
+  <arg name="out_sensors_prefix" default="sensors" />
+
+
+  <!-- Logging image to an mp4. -->
+  <node name="nv2gst0" pkg="nvidia_to_ros" type="nv2gst" output="screen">
+    <param name="topic" value="/nv_image0" />
+    <param name="filename" value="$(arg out_dir)/$(arg out_vid_prefix)_$(arg flight_name).mp4" />
+  </node>
+
+
+  <!-- Logging all the other sensors -->
+  <node name="record" pkg="rosbag" type="record" args="/imu/data --output-name=$(arg out_dir)/$(arg out_sensors_prefix)_$(arg flight_name).bag" output="screen" required="true">
+  </node>
+
+
+</launch>

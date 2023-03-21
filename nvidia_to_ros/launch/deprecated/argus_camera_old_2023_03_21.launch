@@ -81,13 +81,8 @@
   <node name="nv_consumer" pkg="nvidia_to_ros" type="nv_consumer" output="screen">
     <param name="visualize" value="true" />
     <rosparam param="input_topics">[/nv_image0]</rosparam>
-    <rosparam param="output_topics">[/camera_image0]</rosparam> 
+    <rosparam param="output_topics">[/camera0]</rosparam> 
   </node>
-
-    <!-- Logging to an mp4. -->
-  <node name="nv2gst0" pkg="nvidia_to_ros" type="nv2gst" output="screen">
-    <param name="topic" value="/nv_image0" />
-    <param name="filename" value="/home/airlab/data/rosbags/camera0_2048_fps_test_9.mp4" />
-  </node>
+  
     
 </launch>

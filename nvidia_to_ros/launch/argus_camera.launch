@@ -2,8 +2,8 @@
 
   <arg name="system_id"     default="$(optenv MMPUG_SYSTEM_ID rc1)" />
   
-  <arg name="width" value="640" />
-  <arg name="height" value="480" />
+  <arg name="width" value="1224" />       <!-- Downsample to this width -->
+  <arg name="height" value="1028" />      <!-- Downsample to this height -->
   <arg name="base_ip" value="$(optenv MMPUG_MULTICAST_ADDR 0.0.0.0)"/>
   <arg name="base_port" value="6000"/>
   <arg name="namespace"  default="/$(arg system_id)" />
@@ -22,6 +22,8 @@
     <param name="print_time_debug" type="bool" value="false" />
     
     <param name="sensor_mode" type="int" value="0" />
+    <param name="image_width" type="int" value="$(arg width)" />
+    <param name="image_height" type="int" value="$(arg height)" />
 
     <!-- A value < 0 for any settings will make it use the default -->
     
@@ -78,10 +80,13 @@
 
   </node>
   
+
+  <!-- Publish to another node so that we can visualize with rqt_image_view -->
   <node name="nv_consumer" pkg="nvidia_to_ros" type="nv_consumer" output="screen">
     <param name="visualize" value="true" />
     <rosparam param="input_topics">[/nv_image0]</rosparam>
     <rosparam param="output_topics">[/camera0]</rosparam> 
   </node>
+
     
 </launch>
