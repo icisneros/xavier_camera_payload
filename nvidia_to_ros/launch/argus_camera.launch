@@ -19,7 +19,7 @@
     
     <param name="udp_pipeline" type="str" value="appsrc ! video/x-raw,format=BGR,width=$(arg width),height=$(arg height),framerate=24/1 ! videoconvert ! video/x-raw,format=I420 ! x264enc tune=zerolatency bitrate=500 speed-preset=superfast intra-refresh=true key-int-max=3 ! rtph264pay ! udpsink host=$(arg base_ip) auto-multicast=true port=PORT"/>
 
-    <param name="print_time_debug" type="bool" value="false" />
+    <param name="print_time_debug" type="bool" value="true" />
     
     <param name="sensor_mode" type="int" value="0" />
     <param name="image_width" type="int" value="$(arg width)" />

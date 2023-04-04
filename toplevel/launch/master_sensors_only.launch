@@ -1,5 +1,5 @@
 <launch>
     <include file="$(find epson_imu_driver)/launch/epson_g365.launch" />
     <include file="$(find nmea_navsat_driver)/launch/nmea_serial_driver_se100.launch" />
-    <include file="$(find nvidia_to_ros)/launch/argus_camera_2_cameras.launch"/>
+    <!-- <include file="$(find nvidia_to_ros)/launch/argus_camera.launch"/> -->
 </launch>

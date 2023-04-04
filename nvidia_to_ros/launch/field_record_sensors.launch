@@ -1,0 +1,13 @@
+<launch>
+  <!-- Modify at runtime >>>>>>>>>>>  -->
+  <arg name="out_dir" default="/home/airlab/data/2023_04_03_Nardo/debug_test" />
+  <arg name="flight_name" default="nsh_test4" />
+  <!-- <<<<<<<<<<< -->
+
+
+  <!-- Logging all the other sensors -->
+  <node name="record" pkg="rosbag" type="record" args="/imu/data /fix --output-name=$(arg out_dir)/$(arg out_sensors_prefix)_$(arg flight_name).bag" output="screen" required="true">
+  </node>
+
+
+</launch>

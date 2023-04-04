@@ -1,0 +1,48 @@
+session_name : Launch_xavier_payload
+
+suppress_history : false
+
+windows:
+  - window_name: roscore
+    focus: false
+    panes:  #  pane_id = 1
+      - roscore
+  - window_name: main_window
+    focus: true
+    layout: tiled
+    panes:
+      - shell_command: # launch camera  pane_id = 1
+        - sleep 3
+        - echo "launching camera"
+        - roslaunch nvidia_to_ros argus_camera.launch
+      - shell_command: # launch gps/imu  pane_id = 2
+        - sleep 3
+        - echo "launching camera"
+        - roslaunch ~/ws/src/toplevel/launch/master_sensors_only.launch
+      - shell_command: # check gps and record image to mp4  pane_id = 3
+        - sleep 15
+        - echo "debug check ..."
+        - timeout 10s rostopic hz /fix
+        - read -p "Is the GPS working properly?:" flag
+        - if [ $flag in [Yy] ]; then
+        -   echo "Do camera check"
+        -   export DISPLAY="127.0.0.1:10.0"
+        -   timeout 15s rqt_image_view
+        -   export GPS_SUCCESS=1
+        - else
+        -   echo "Restart the payload!"
+        -   export GPS_SUCCESS=0
+        - fi
+        - if [$GPS_SUCCESS -eq 1]; then
+        -   roslaunch nvidia_to_ros field_record_camera.launch
+      - shell_command: # check gps and record sensors  pane_id = 4
+        - if [$GPS_SUCCESS -eq 1]; then
+        -   roslaunch nvidia_to_ros field_record_sensors.launch
+      - shell_command: # camera monitor bash script  pane_id = 5
+        - if [$GPS_SUCCESS -eq 1]; then
+        -   bash ~/ws/src/toplevel/camera_monitor.sh
+
+      - shell_command: # Launch anything using this format
+        - tmux capture-pane -p
+        - tmux save-buffer -
+        - echo "#{} $GPS_SUCCESS"
