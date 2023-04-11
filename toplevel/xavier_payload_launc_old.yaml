@@ -1,0 +1,33 @@
+session_name : mysession
+
+suppress_history : false
+
+windows:
+  - window_name: mywindow
+    focus: true
+    layout: tiled
+    panes:
+      - shell_command: # roscore pane_id = 0
+        - roscore
+      - shell_command: # launch camera  pane_id = 1
+        - sleep 3
+        - echo "launching camera"
+        - roslaunch nvidia_to_ros argus_camera.launch
+      - shell_command: # launch gps/imu  pane_id = 2
+        - sleep 3
+        - echo "launching camera"
+        - roslaunch ~/ws/src/toplevel/launch/master_sensors_only.launch
+      - shell_command: # check gps and record image to mp4  pane_id = 3
+        - sleep 15
+        - bash ~/ws/src/toplevel/scripts/record_mp4.sh
+      - shell_command: # check gps and record sensors  pane_id = 4
+        - sleep 15
+        - bash ~/ws/src/toplevel/scripts/record_sensors.sh
+      - shell_command: # camera monitor bash script  pane_id = 5
+        - sleep 20
+        - bash ~/ws/src/toplevel/scripts/start_monitoring.sh
+
+      - shell_command: # Launch anything using this format
+        - tmux capture-pane -p
+        - tmux save-buffer -
+        - echo ":)"

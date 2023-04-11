@@ -1,7 +1,7 @@
 <launch>
   <!-- Modify at runtime >>>>>>>>>>>  -->
-  <arg name="out_dir" default="/home/airlab/data/2023_04_03_Nardo/debug_test" />
-  <arg name="flight_name" default="nsh_test4" />
+  <arg name="out_dir" default="/home/airlab/data/sqh_test" />
+  <arg name="flight_name" default="gnss_test" />
   <!-- <<<<<<<<<<< -->
 
   <arg name="out_sensors_prefix" default="sensors" />

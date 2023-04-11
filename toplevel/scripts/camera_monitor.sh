@@ -45,8 +45,6 @@ while true; do
 
     tmux send-keys -t mysession:mywindow.$pane_id "sudo systemctl restart nvargus-daemon.service" Enter
 
-    break
-
 
     sleep 5
 
