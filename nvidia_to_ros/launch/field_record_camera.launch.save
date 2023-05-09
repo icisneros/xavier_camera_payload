@@ -1,7 +1,7 @@
-<launch>
+/home/airlab/data/2023_04_11_Nardo/flight1<launch>
   <!-- Modify at runtime >>>>>>>>>>>  -->
-  <arg name="out_dir" default="/home/airlab/data/2023_05_08_SQH_calib" />
-  <arg name="flight_name" default="flight1" />
+  <arg name="out_dir" default="/home/airlab/data/sqh_test" />
+  <arg name="flight_name" default="gnss_test" />
   <!-- <<<<<<<<<<< -->
 
   <arg name="out_vid_prefix" default="nv2gst_camera" />

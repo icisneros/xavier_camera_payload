@@ -84,7 +84,7 @@
   <!-- Publish to another node so that we can visualize with rqt_image_view -->
   <node name="nv_consumer" pkg="nvidia_to_ros" type="nv_consumer" output="screen">
     <param name="visualize" value="true" />
-    <rosparam param="input_topics">[/nv_image0]</rosparam>
+    <rosparam param="input_topics">[nv_image0]</rosparam>
     <rosparam param="output_topics">[/camera0]</rosparam> 
   </node>
 
