@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=button
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Exec=gnome-terminal --window -- python3 /home/airlab/ws/src/toplevel/button.py
