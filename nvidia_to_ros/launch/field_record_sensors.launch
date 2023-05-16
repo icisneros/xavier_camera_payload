@@ -1,6 +1,6 @@
 <launch>
   <!-- Modify at runtime >>>>>>>>>>>  -->
-  <arg name="out_dir" default="/home/airlab/data/2023_05_08_SQH_calib" />
+  <arg name="out_dir" default="/home/airlab/data/2023-05-15_Nardo/flight1" />
   <arg name="flight_name" default="flight1" />
   <!-- <<<<<<<<<<< -->
 
