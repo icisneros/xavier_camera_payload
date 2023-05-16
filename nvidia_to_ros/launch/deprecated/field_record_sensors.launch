@@ -1,7 +1,7 @@
 <launch>
   <!-- Modify at runtime >>>>>>>>>>>  -->
-  <arg name="out_dir" default="/home/airlab/data/2023-05-15_Nardo/flight1" />
-  <arg name="flight_name" default="flight1" />
+  <arg name="out_dir" default="/home/airlab/data" />
+  <!-- <arg name="flight_name" default="flight1" /> -->
   <!-- <<<<<<<<<<< -->
 
   <arg name="out_sensors_prefix" default="sensors" />

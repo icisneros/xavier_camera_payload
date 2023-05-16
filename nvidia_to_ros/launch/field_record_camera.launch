@@ -1,7 +1,7 @@
 <launch>
   <!-- Modify at runtime >>>>>>>>>>>  -->
-  <arg name="out_dir" default="/home/airlab/data/2023-05-15_Nardo/flight1" />
-  <arg name="flight_name" default="flight1" />
+  <arg name="out_dir" default="/home/airlab/data" />
+  <!-- <arg name="flight_name" default="flight1" /> -->
   <!-- <<<<<<<<<<< -->
 
   <arg name="out_vid_prefix" default="nv2gst_camera" />
@@ -11,7 +11,7 @@
   <!-- Logging image to an mp4. -->
   <node name="nv2gst0" pkg="nvidia_to_ros" type="nv2gst" output="screen">
     <param name="topic" value="/nv_image0" />
-    <param name="filename" value="$(arg out_dir)/$(arg out_vid_prefix)_$(arg flight_name).mp4" />
+    <param name="filename" value="$(arg out_dir)/$(arg out_vid_prefix).mp4" />
   </node>
 
 

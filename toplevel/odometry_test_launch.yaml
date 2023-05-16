@@ -22,18 +22,18 @@ windows:
         - roslaunch nvidia_to_ros field_record_camera.launch
       - shell_command: # record sensors  pane_id = 4
         - sleep 20
-        - roslaunch nvidia_to_ros field_record_sensors.launch
+        - rosbag record -o /home/airlab/data/sensors /imu/data /fix
       - shell_command: # camera monitor bash script  pane_id = 5
         - sleep 25
         - bash ~/ws/src/toplevel/scripts/start_monitoring.sh
-      - shell_command: # launch gnss denied
+      - shell_command: # launch gnss denied  pane_id = 6
         - sleep 35
         - cd ~/GNSS_Denied_Localization_IMU/
         - source devel/setup.bash
         - roslaunch mcvio gnss_denied_localization.launch 
-      - shell_command:
+      - shell_command: # launch gnss denied rosbag record  pane_id = 7
         - sleep 40
-        - rosbag record /gnss_denied_localization/path /camera0/feature_image /camera0/camera_pose_visual
+        - rosbag record -o /home/airlab/data/odometry /gnss_denied_localization/path /camera0/feature_image /camera0/camera_pose_visual
       # - shell_command: # check gps  pane_id = 6
       #   - sleep 15
       #   - echo "debug check ..."

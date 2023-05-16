@@ -1,8 +1,0 @@
-<launch>
-
-  <node pkg="gpio-button-xaviernx" type="gpio-button.py" name="gpiobutton" >
-
-  
-  </node>
-  
-</launch>
