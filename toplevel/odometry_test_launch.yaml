@@ -34,7 +34,3 @@ windows:
       - shell_command: # launch gnss denied rosbag record  pane_id = 7
         - sleep 40
         - rosbag record -o /home/airlab/data/odometry /gnss_denied_localization/path /camera0/feature_image /camera0/camera_pose_visual
-      # - shell_command: # check gps  pane_id = 6
-      #   - sleep 15
-      #   - echo "debug check ..."
-      #   - ./GPS_flag.sh

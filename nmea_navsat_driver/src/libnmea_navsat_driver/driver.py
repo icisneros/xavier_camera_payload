@@ -92,8 +92,9 @@ class RosNMEADriver(object):
         """
 
         if not check_nmea_checksum(nmea_string):
-            rospy.logwarn("Received a sentence with an invalid checksum. " +
-                          "Sentence was: %s" % repr(nmea_string))
+            # #Ivan
+            # rospy.logwarn("Received a sentence with an invalid checksum. " +
+            #               "Sentence was: %s" % repr(nmea_string))
             return False
 
         parsed_sentence = libnmea_navsat_driver.parser.parse_nmea_sentence(
@@ -175,6 +176,7 @@ class RosNMEADriver(object):
             altitude = data['altitude'] + data['mean_sea_level']
             current_fix.altitude = altitude
 
+            # rospy.logwarn("Publishing message.%s" % parsed_sentence)  #Ivan
             self.fix_pub.publish(current_fix)
 
             if not (math.isnan(data['utc_time'][0]) or self.use_GNSS_time):
