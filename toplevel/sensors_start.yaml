@@ -1,13 +1,13 @@
-session_name : mysession
+session_name : sensors_session
 
 suppress_history : false
 
 windows:
-  - window_name: mywindow
+  - window_name: sensors_window
     focus: true
     layout: tiled
     panes:
-      - shell_command: #pane_id 0
+      - shell_command: #roscore pane_id = 0
         - roscore
       - shell_command: # launch camera  pane_id = 1
         - sleep 10
@@ -26,11 +26,6 @@ windows:
       - shell_command: # camera monitor bash script  pane_id = 5
         - sleep 25
         - bash ~/ws/src/toplevel/scripts/start_monitoring.sh
-      - shell_command: # launch gnss denied  pane_id = 6
-        - sleep 35
-        - cd ~/GNSS_Denied_Localization_IMU/
-        - source devel/setup.bash
-        - roslaunch mcvio gnss_denied_localization.launch 
-      - shell_command: # launch gnss denied rosbag record  pane_id = 7
+      - shell_command: # record localization results pane_id = 6
         - sleep 40
         - rosbag record -o /home/airlab/data/odometry /gnss_denied_localization/path /camera0/feature_image /camera0/camera_pose_visual
