@@ -4,10 +4,11 @@
 SESSION="Localization_session"
 WINDOW="Localization_window"
 
-for pane_id in 4 2 1 3 0; do
+for pane_id in 7 6 5 4 2 1 3 0; do
     tmux send-keys -t ${SESSION}:${WINDOW}.${pane_id} C-b C-c 
     sleep 2
 done
+sleep 5
 tmux kill-session -t $SESSION
 
 
@@ -20,4 +21,5 @@ for pane_id in 6 5 4 3 2 1 0; do
     tmux send-keys -t ${SESSION}:${WINDOW}.${pane_id} C-b C-c 
     sleep 2
 done
+sleep 5
 tmux kill-session -t $SESSION
