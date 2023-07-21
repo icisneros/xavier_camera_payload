@@ -26,7 +26,8 @@ windows:
       - shell_command: # (5) camera monitor bash script
         - sleep 25
         # - bash ~/ws/src/toplevel/scripts/start_monitoring.sh
+        - rostopic hz /fix
       - shell_command: # (6) record localization topics
         - sleep 40
-        - rosbag record -o /home/airlab/data/localization /gnss_denied_localization/path /gnss_denied_localization/aligned_path /camera0/camera_pose_visual /gnss_denied_localization/reboot /pf_distribution /loc_trigger_state
+        # - rosbag record -o /home/airlab/data/localization /gnss_denied_localization/path /gnss_denied_localization/aligned_path /camera0/camera_pose_visual /gnss_denied_localization/reboot /pf_distribution /loc_trigger_state
 
